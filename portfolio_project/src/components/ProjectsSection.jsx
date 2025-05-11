@@ -22,13 +22,13 @@ const projects = [
   },
   {
     id: 3,
-    title: "E-commerce Platform",
+    title: "OnTask",
     description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
-    tags: ["React", "Node.js", "Stripe"],
+      "Calendar application for teachers, students, and parents to keep track of assignments and class events.",
+    image: "/projects/Wireframe.png",
+    tags: ["React", "Node.js", "MongoDB"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/alexmerlo23/OnTask",
   },
 ];
 
