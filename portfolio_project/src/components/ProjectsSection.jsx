@@ -7,8 +7,8 @@ const projects = [
     description: "Educational site and tool for neonatal nurses in north Florida. Collaboration with UF health Dr. Michael Weiss.",
     image: "/projects/project1.png",
     tags: ["Wordpress", "React", "Jest"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "https://ufneocare.wordpress.com/",
+    githubUrl: "https://github.com/alexmerlo23/NeoCare",
   },
   {
     id: 2,
@@ -17,8 +17,8 @@ const projects = [
       "Giving users an intuitive UI for personalized recipe recommendations based on their dietary needs",
     image: "/projects/project2.png",
     tags: ["React", "Spoonacular API"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "https://foodgiene.netlify.app/",
+    githubUrl: "https://github.com/alexmerlo23/FoodGiene",
   },
   {
     id: 3,
@@ -37,7 +37,6 @@ export const ProjectsSection = () => {
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          {" "}
           My <span className="text-primary"> Projects </span>
         </h2>
 
@@ -73,23 +72,23 @@ export const ProjectsSection = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   {project.description}
                 </p>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
+                <div className="flex w-full items-center">
+                  <div className="mx-auto" style={{ marginLeft: '2rem' }}>
                     <a
+                      className="cosmic-button w-fit flex items-center gap-2"
+                      target="_blank"
                       href={project.demoUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
                     >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
+                      Check It Out! <ArrowRight size={16} />
                     </a>
                   </div>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    className="text-foreground/80 hover:text-primary transition-colors duration-300 ml-auto"
+                  >
+                    <Github size={20} />
+                  </a>
                 </div>
               </div>
             </div>
