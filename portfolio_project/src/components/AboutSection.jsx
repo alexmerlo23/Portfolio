@@ -35,11 +35,13 @@ export const AboutSection = () => {
               </a>
 
               <a
-                href=""
+                href="/Resume.pdf"
+                download
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
                 Download CV
               </a>
+
             </div>
           </div>
 
@@ -81,7 +83,7 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Algorithm Experience</h4>
                   <p className="text-muted-foreground">
-                    Deep knowlege of time and space complexity aquired through rigorious college courses.
+                    In-depth knowledge of time and space complexity for tackling performance challenges.
                   </p>
                 </div>
               </div>
