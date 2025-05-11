@@ -62,13 +62,16 @@
     }
   }
 
-  @keyframes click-meteor-animation {
+  @keyframes click-meteor {
     0% {
-      transform: translate(0, 0) rotate(215deg);
+      transform: rotate(215deg) translateX(0);
       opacity: 1;
     }
+    70% {
+      opacity: 0.8;
+    }
     100% {
-      transform: translate(-1000px, 1000px) rotate(215deg);
+      transform: rotate(215deg) translateX(-500px);
       opacity: 0;
     }
   }
@@ -76,18 +79,6 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-
-    --primary: 250 47% 60%;
-    --primary-foreground: 210 40% 98%;
-
-    --border: 214 32% 91%;
-  }
-
-  .dark {
     --background: 222 47% 4%;
     --foreground: 213 31% 91%;
 
@@ -97,6 +88,10 @@
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
+  }
+
+  .dark {
+    
   }
 
   * {
@@ -167,8 +162,11 @@
 }
 
 @utility click-meteor {
-  @apply absolute bg-red-500 rounded-full;
-  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.5);
+  @apply absolute bg-gradient-to-r from-red-500 via-red-400 to-transparent rounded-full;
+  box-shadow: 0 0 15px 5px rgba(239, 68, 68, 0.5);
+  transform: rotate(215deg);
+  pointer-events: none;
+  z-index: 1;
 }
 
 #root {
@@ -178,23 +176,6 @@
   text-align: center;
 }
 
-.click-meteor {
-  position: absolute;
-  background-color: red;
-  border-radius: 1px;
-  transform: rotate(-45deg);
-  pointer-events: none;
-  z-index: 1;
+.animate-click-meteor {
+  animation: click-meteor 1.5s linear forwards;
 }
-
-@keyframes click-meteor-animation {
-  0% {
-    transform: translate(0, 0) rotate(-45deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-200px, 200px) rotate(-45deg);
-    opacity: 0;
-  }
-}
-

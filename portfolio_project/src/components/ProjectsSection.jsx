@@ -3,20 +3,20 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "SaaS Landing Page",
-    description: "A beautiful landing page app using React and Tailwind.",
+    title: "ANNCURA",
+    description: "Educational site and tool for neonatal nurses in north Florida. Collaboration with UF health Dr. Michael Weiss.",
     image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
+    tags: ["Wordpress", "React", "Jest"],
     demoUrl: "#",
     githubUrl: "#",
   },
   {
     id: 2,
-    title: "Orbit Analytics Dashboard",
+    title: "Food Genie",
     description:
-      "Interactive analytics dashboard with data visualization and filtering capabilities.",
+      "Giving users an intuitive UI for personalized recipe recommendations based on their dietary needs",
     image: "/projects/project2.png",
-    tags: ["TypeScript", "D3.js", "Next.js"],
+    tags: ["React", "Spoonacular API"],
     demoUrl: "#",
     githubUrl: "#",
   },
@@ -38,7 +38,7 @@ export const ProjectsSection = () => {
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           {" "}
-          Featured <span className="text-primary"> Projects </span>
+          My <span className="text-primary"> Projects </span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">

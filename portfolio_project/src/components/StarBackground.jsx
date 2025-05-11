@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-export const StarBackground = () => {
+export const StarBackground = ({ onClick }) => {
   const [stars, setStars] = useState([]);
   const [meteors, setMeteors] = useState([]);
-  const [clickMeteors, setClickMeteors] = useState(new Map());
+  const [clickMeteors, setClickMeteors] = useState([]);
 
   useEffect(() => {
     generateStars();
@@ -54,38 +54,40 @@ export const StarBackground = () => {
     setMeteors(newMeteors);
   };
 
-  const handleClick = (e) => {
-    const { clientX, clientY } = e;
+  const addClickMeteor = (x, y) => {
     const size = Math.random() * 2 + 1;
     const id = Date.now();
 
     const newClickMeteor = {
       id,
       size,
-      x: clientX,
-      y: clientY,
+      x, // Percentage-based x
+      y, // Percentage-based y
     };
 
-    setClickMeteors((prevMap) => {
-      const newMap = new Map(prevMap);
-      newMap.set(id, newClickMeteor);
-      return newMap;
-    });
+    setClickMeteors((prev) => [...prev, newClickMeteor]);
 
     setTimeout(() => {
-      setClickMeteors((prevMap) => {
-        const newMap = new Map(prevMap);
-        newMap.delete(id);
-        return newMap;
-      });
+      setClickMeteors((prev) => prev.filter((m) => m.id !== id));
     }, 1500);
   };
 
+  // Expose addClickMeteor to parent component
+  useEffect(() => {
+    if (onClick) {
+      const handleClick = (e) => {
+        const { clientX, clientY } = e;
+        const xPercent = (clientX / window.innerWidth) * 100;
+        const yPercent = (clientY / window.innerHeight) * 100;
+        addClickMeteor(xPercent, yPercent);
+      };
+      window.addEventListener("click", handleClick);
+      return () => window.removeEventListener("click", handleClick);
+    }
+  }, [onClick]);
+
   return (
-    <div
-      className="fixed inset-0 overflow-hidden pointer-events-none z-0"
-      onClick={handleClick}
-    >
+    <div className="fixed inset-0 overflow-hidden z-0">
       {stars.map((star) => (
         <div
           key={star.id}
@@ -110,22 +112,21 @@ export const StarBackground = () => {
             height: `${meteor.size * 2}px`,
             left: `${meteor.x}%`,
             top: `${meteor.y}%`,
-            animationDelay: `${meteor.delay}s`,
+            
             animationDuration: `${meteor.animationDuration}s`,
           }}
         />
       ))}
 
-      {Array.from(clickMeteors.values()).map((meteor) => (
+      {clickMeteors.map((meteor) => (
         <div
           key={meteor.id}
-          className="click-meteor"
+          className="click-meteor animate-click-meteor"
           style={{
             width: `${meteor.size * 50}px`,
             height: `${meteor.size * 2}px`,
-            left: `${meteor.x}px`,
-            top: `${meteor.y}px`,
-            animation: "click-meteor-animation 1.5s linear forwards",
+            left: `${meteor.x}%`,
+            top: `${meteor.y}%`,
           }}
         />
       ))}
