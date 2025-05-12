@@ -8,25 +8,46 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const formRef = useRef();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    // TODO: Put EmailJS service credentialsin .env
+    const serviceId = 'service_mfm77q9';
+    const templateId = 'template_c6acl8z';
+    const publicKey = 'aJpFuqhtNxUya2JST';
+    
+    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        // Reset the form
+        formRef.current.reset();
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error.text);
+        toast({
+          title: "Error sending message",
+          description: "There was a problem sending your message. Please try again.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      setIsSubmitting(false);
-    }, 1500);
   };
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -54,7 +75,7 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium text-left"> Email</h4>
                   <a
-                    href="mailto:hello@gmail.com"
+                    href="mailto:alexmerlo23@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     alexmerlo23@gmail.com
@@ -68,7 +89,7 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium text-left"> Phone</h4>
                   <a
-                    href="tel:+11234567890"
+                    href="tel:+15617526111"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     +1 (561) 752-6111
@@ -102,16 +123,13 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
+          <div className="bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
-            <form className="space-y-6">
+            <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
-                  htmlFor="name"
+                  htmlFor="user_name"
                   className="block text-sm font-medium mb-2"
                 >
                   {" "}
@@ -119,17 +137,17 @@ export const ContactSection = () => {
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="user_name"
+                  name="user_name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="Alexander Merlo..."
                 />
               </div>
 
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="user_email"
                   className="block text-sm font-medium mb-2"
                 >
                   {" "}
@@ -137,10 +155,10 @@ export const ContactSection = () => {
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
+                  id="user_email"
+                  name="user_email"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="alex@gmail.com"
                 />
               </div>
@@ -157,7 +175,8 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
                 />
               </div>
