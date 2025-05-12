@@ -83,7 +83,7 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Database Development</h4>
                   <p className="text-muted-foreground">
-                    My in-depth knowledge of databases and algorithms allows me to create functional, fast, and efficient databases.
+                    In-depth knowledge of databases and algorithms to create functional, fast, and efficient databases.
                   </p>
                 </div>
               </div>
