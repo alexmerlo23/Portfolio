@@ -81,9 +81,9 @@ export const AboutSection = () => {
                   <User className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Algorithm Experience</h4>
+                  <h4 className="font-semibold text-lg">Database Development</h4>
                   <p className="text-muted-foreground">
-                    In-depth knowledge of time and space complexity for tackling performance challenges.
+                    My in-depth knowledge of databases and algorithms allows me to create functional, fast, and efficient databases.
                   </p>
                 </div>
               </div>
