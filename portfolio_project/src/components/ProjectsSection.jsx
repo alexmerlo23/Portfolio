@@ -2,6 +2,16 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
+    id: 3,
+    title: "OnTask",
+    description:
+      "Calendar application for teachers, students, and parents to keep track of assignments and class events.",
+    image: "/projects/project3.png",
+    tags: ["React", "Node.js", "MongoDB"],
+    demoUrl: "https://ontask-1.onrender.com/login",
+    githubUrl: "https://github.com/alexmerlo23/OnTask",
+  },
+  {
     id: 1,
     title: "ANNCURA",
     description: "Educational site and tool for neonatal nurses in north Florida. Collaboration with UF health Dr. Michael Weiss.",
@@ -19,17 +29,7 @@ const projects = [
     tags: ["React", "Spoonacular API"],
     demoUrl: "https://foodgiene.netlify.app/",
     githubUrl: "https://github.com/alexmerlo23/FoodGiene",
-  },
-  {
-    id: 3,
-    title: "OnTask",
-    description:
-      "Calendar application for teachers, students, and parents to keep track of assignments and class events.",
-    image: "/projects/Wireframe.png",
-    tags: ["React", "Node.js", "MongoDB"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/alexmerlo23/OnTask",
-  },
+  }
 ];
 
 export const ProjectsSection = () => {

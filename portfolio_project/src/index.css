@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -105,6 +106,27 @@
   body {
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .font-bebas {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  .tracking-custom {
+    letter-spacing: 0.07em;
+  }
+}
+
+@layer components {
+  .skill-name {
+    color: hsl(var(--foreground)); /* Matches text-foreground */
+    transition: color 0.3s ease; /* Smooth transition */
+  }
+
+  .skill-name:hover {
+    color: hsl(var(--primary)); /* Matches text-primary */
   }
 }
 

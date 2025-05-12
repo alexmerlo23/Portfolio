@@ -3,25 +3,25 @@ import { cn } from "@/lib/utils";
 
 const skills = [
   // Frontend
-  { name: "React", level: 90, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "TypeScript", level: 80, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  { name: "Next.js", level: 80, category: "frontend" },
+  { name: "React", category: "frontend" },
+  { name: "JavaScript", category: "frontend" },
+  { name: "HTML/CSS", category: "frontend" },
+  { name: "TypeScript", category: "frontend" },
+  { name: "Tailwind CSS", category: "frontend" },
+  { name: "Next.js", category: "frontend" },
 
   // Backend
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 90, category: "backend" },
-  { name: "MongoDB", level: 90, category: "backend" },
-  { name: "Python", level: 80, category: "backend" },
-  { name: "SQL", level: 85, category: "backend" },
+  { name: "Node.js", category: "backend" },
+  { name: "Express", category: "backend" },
+  { name: "Mongo DB", category: "backend" },
+  { name: "Python", category: "backend" },
+  { name: "SQL", category: "backend" },
 
   // Tools
-  { name: "Git/GitHub", level: 95, category: "tools" },
-  { name: "Figma", level: 75, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
-  { name: "JetBrains", level: 95, category: "tools" },
+  { name: "Git/GitHub", category: "tools" },
+  { name: "Figma", category: "tools" },
+  { name: "VS Code", category: "tools" },
+  { name: "JetBrains", category: "tools" },
 ];
 
 const categories = ["all", "frontend", "backend", "tools"];
@@ -57,29 +57,19 @@ export const SkillsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+  {filteredSkills.map((skill, key) => (
+    <div
+      key={key}
+      className="bg-card p-6 rounded-lg shadow-xs"
+    >
+      <span
+        className="text-4xl font-semi-bold mb-12 text-center skill-name font-bebas tracking-custom"
+      >
+        {skill.name}
+      </span>
+    </div>
+  ))}
+</div>
       </div>
     </section>
   );
