@@ -112,10 +112,10 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
+                <a href="https://www.linkedin.com/in/alexmerlo23" target="_blank">
                   <Linkedin />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://www.instagram.com/alex_merlo23/" target="_blank">
                   <Instagram />
                 </a>
                 
@@ -159,7 +159,7 @@ export const ContactSection = () => {
                   name="user_email"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="alex@gmail.com"
+                  placeholder="alexmerlo23@gmail.com"
                 />
               </div>
 
