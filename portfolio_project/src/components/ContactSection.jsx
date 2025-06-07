@@ -9,43 +9,57 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
-import emailjs from '@emailjs/browser';
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef();
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // TODO: Put EmailJS service credentialsin .env
-    const serviceId = 'service_mfm77q9';
-    const templateId = 'template_c6acl8z';
-    const publicKey = 'aJpFuqhtNxUya2JST';
-    
-    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
-      .then((result) => {
-        console.log('Email sent successfully:', result.text);
-        toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
-        // Reset the form
-        formRef.current.reset();
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error.text);
-        toast({
-          title: "Error sending message",
-          description: "There was a problem sending your message. Please try again.",
-          variant: "destructive",
-        });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+    // Get form data
+    const formData = new FormData(formRef.current);
+    const contactData = {
+      name: formData.get('user_name'),
+      email: formData.get('user_email'),
+      message: formData.get('message')
+    };
+
+    try {
+      // Send to PHP backend API
+      const response = await fetch('https://alexsportfoliowebsite.netlify.app/api/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactData)
       });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+      
+      // Reset the form
+      formRef.current.reset();
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error sending message",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
